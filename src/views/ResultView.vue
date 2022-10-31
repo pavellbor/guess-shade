@@ -6,11 +6,15 @@
         {{ message }}
       </template>
       <template v-else>
-        Покорил<br />{{ message }}<br />
+        Покорил {{ message }}<br />
         <span
           v-if="recordLevel"
-          style="opacity: 0.5"
-          >но рекорд {{ recordLevel }}</span
+          :style="{
+            opacity: 0.5,
+            color: 'red',
+            fontSize: '34px',
+          }"
+          >Ваш рекорд {{ recordLevel }}</span
         >
       </template>
     </template>

@@ -4,7 +4,7 @@ import { createStore } from 'vuex';
 function getInitialState() {
   return {
     recordLevel: localStorage.getItem('record'),
-    isGameFinished: true,
+    isGameFinished: false,
     totalLevel: 1,
     squaresNumberOnOneSide: 2,
     correctSquareIndex: getRandomInt(1, 4),
