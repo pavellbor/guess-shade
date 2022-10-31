@@ -1,17 +1,18 @@
 <template>
   <MainLayout>
     <template #title>
-      <!-- <template v-if="isNewRecord"> -->
-      <span style="color: #f5d10c">Новый рекорд!</span><br>
-      {{ message }}
-      <!-- <template v-else>
-          Покорил<br />{{ message }}<br />
-          <span
-            v-if="recordLevel"
-            style="opacity: 0.5"
-            >но рекорд {{ recordLevel }}</span
-          >
-        </template> -->
+      <template v-if="isNewRecord">
+        <span style="color: #f5d10c">Новый рекорд!</span><br />
+        {{ message }}
+      </template>
+      <template v-else>
+        Покорил<br />{{ message }}<br />
+        <span
+          v-if="recordLevel"
+          style="opacity: 0.5"
+          >но рекорд {{ recordLevel }}</span
+        >
+      </template>
     </template>
     <template #button>Играть снова</template>
   </MainLayout>
