@@ -1,7 +1,11 @@
 <template>
   <section class="main-screen">
     <h1 class="main-screen__title"><slot name="title"></slot></h1>
-    <router-link class="main-screen__button" to="/game"><slot name="button"></slot></router-link>
+    <router-link
+      class="main-screen__button"
+      to="/game"
+      ><slot name="button"></slot
+    ></router-link>
   </section>
 </template>
 
@@ -14,8 +18,9 @@
 }
 
 .main-screen__title {
-  margin: 0 20px 30px;
+  margin: 0 20px 40px;
   font-size: 44px;
+  line-height: 1.4;
   text-align: center;
 }
 

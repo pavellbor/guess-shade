@@ -1,11 +1,13 @@
 <template>
-  <div ref="squareWrapper" class="square-wrapper" :style="squareWrapperStyle">
+  <div
+    ref="squareWrapper"
+    class="square-wrapper"
+    :style="squareWrapperStyle">
     <SquareItem
       v-for="index in squareCounts"
       :key="index"
       :style="squareItemStyle(index)"
-      @click="checkAnswer(index)"
-    ></SquareItem>
+      @click="checkAnswer(index)"></SquareItem>
   </div>
 </template>
 
@@ -20,9 +22,12 @@ export default {
       squareWrapperSize: null,
     };
   },
+
   computed: {
     ...mapState(['squaresNumberOnOneSide', 'correctSquareIndex', 'squareColor', 'timer']),
+
     ...mapGetters(['squareCounts', 'opacityDegree']),
+
     squareWrapperStyle() {
       return {
         gridTemplateColumns: `repeat(${this.squaresNumberOnOneSide}, 1fr)`,
@@ -33,27 +38,34 @@ export default {
       };
     },
   },
+
   watch: {
     timer(newValue) {
       if (newValue === 0) {
+        this.finishGame();
         this.$router.push({ path: '/result' });
       }
     },
   },
+
   created() {
     this.resetGame();
   },
+
   mounted() {
     const squareWrapper = this.$refs.squareWrapper;
     this.squareWrapperSize = getElementMinSize(squareWrapper);
   },
+
   methods: {
-    ...mapActions(['incrementLevel', 'startTimer', 'resetGame']),
+    ...mapActions(['incrementLevel', 'startTimer', 'resetGame', 'finishGame']),
+
     checkAnswer(index) {
       if (this.correctSquareIndex === index) {
         this.incrementLevel();
       }
     },
+
     squareItemStyle(index) {
       return {
         backgroundColor: this.squareColor,
@@ -61,6 +73,7 @@ export default {
       };
     },
   },
+
   components: { SquareItem },
 };
 </script>

@@ -1,14 +1,16 @@
 <template>
   <GameLayout>
     <template #title>Уровень {{ totalLevel }}</template>
-    <template #timer>{{ timer }}</template>
+    <template #timer
+      ><span :class="{ warning: isTimeRunningOut }">{{ timer }}</span></template
+    >
     <SquareWrapper />
   </GameLayout>
 </template>
 
 <script>
 import GameLayout from '@/layouts/GameLayout.vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import SquareWrapper from '../components/SquareWrapper.vue';
 
 export default {
@@ -16,6 +18,13 @@ export default {
 
   computed: {
     ...mapState(['totalLevel', 'timer']),
+    ...mapGetters(['isTimeRunningOut']),
   },
 };
 </script>
+
+<style scoped>
+.warning {
+  color: #db1010;
+}
+</style>

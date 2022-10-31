@@ -3,6 +3,8 @@ import { createStore } from 'vuex';
 
 function getInitialState() {
   return {
+    recordLevel: localStorage.getItem('record'),
+    isGameFinished: true,
     totalLevel: 1,
     squaresNumberOnOneSide: 2,
     correctSquareIndex: getRandomInt(1, 4),
@@ -25,6 +27,10 @@ export default createStore({
 
     opacityDegree(state) {
       return 0.5 + (0.1 * state.squaresNumberOnOneSide) / 2;
+    },
+
+    isTimeRunningOut(state) {
+      return state.timer < 10;
     },
   },
 
@@ -51,6 +57,15 @@ export default createStore({
 
     resetGame(state) {
       Object.assign(state, getInitialState());
+    },
+
+    finishGame(state) {
+      if (state.totalLevel > state.recordLevel) {
+        localStorage.setItem('record', state.totalLevel);
+        state.recordLevel = state.totalLevel;
+      }
+
+      state.isGameFinished = true;
     },
   },
 
@@ -84,6 +99,10 @@ export default createStore({
 
     resetGame({ commit }) {
       commit('resetGame');
+    },
+
+    finishGame({ commit }) {
+      commit('finishGame');
     },
   },
 });
